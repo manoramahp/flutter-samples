@@ -10,22 +10,23 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(child: Text("Clicks: ${counterController.counter.value}")),
-          SizedBox(
-            height: 10,
-          ),
-          Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  Get.to(OtherScreen()); // go to OtherScreen
-                },
-                child: Text("Open other screen")),
-          )
-        ],
-      ),
+      // Wrap everything inside the widget within Obx to update the ui with state variable value changes
+      body: Obx((() => Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(child: Text("Clicks: ${counterController.counter.value}")),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(OtherScreen()); // go to OtherScreen
+                    },
+                    child: Text("Open other screen")),
+              )
+            ],
+          ))),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             counterController.increment();
